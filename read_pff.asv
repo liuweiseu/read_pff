@@ -33,7 +33,7 @@ elseif(strcmp(ft,'ph256') || strcmp(ft,'ph16'))
     frametime_epoch     = double(d{6});
 elseif(strcmp(ft,'ph1024'))
     for i=1:4
-        q(i).ph             = double(d{(i-1)*5+1});
+        q(i).ph          = double(d{(i-1)*5+1});
         q(i).tai            = double(d{(i-1)*5+2});
         q(i).nanosec        = double(d{(i-1)*5+3});
         q(i).packet_no      = double(d{(i-1)*5+4});

@@ -17,8 +17,5 @@ end
 
 [q, frametime_epoch] = read_pff(filename);
 
-q(1)
-q(2)
-q(3)
-q(4)
-frametime_epoch
+size(q)
+size(frametime_epoch)
