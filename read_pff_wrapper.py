@@ -138,14 +138,22 @@ def read_img(f, image_size, bytes_per_pixel):
         for q in range(4):
             quabo = 'quabo_' + str(q)
             dat[q] = np.append(dat[q], sdata[q], axis=2) 
-            boardloc[q] = np.append(boardloc[q], int(y[quabo]['mod_num']) * 4)
+            # we removed "mod_num" from metadata in the lastest code
+            try:
+                boardloc[q] = np.append(boardloc[q], int(y[quabo]['mod_num']) * 4)
+            except:
+                boardloc[q] = np.append(boardloc[q], -1)
             # we changed 'pkt_utc' to 'pkt_tai' in the latest verison of code
             try:
                 tai[q] = np.append(tai[q], int((y[quabo]['pkt_utc'])))
             except:
                 tai[q] = np.append(tai[q], int((y[quabo]['pkt_tai'])))
             nanosec[q] = np.append(nanosec[q], int((y[quabo]['pkt_nsec'])))
-            acq_mode[q] = np.append(acq_mode[q], int((y[quabo]['acq_mode'])))
+            # we removed "acq_mode" from metadata in the lastest code
+            try:
+                acq_mode[q] = np.append(acq_mode[q], int((y[quabo]['acq_mode'])))
+            except:
+                acq_mode[q] = np.append(acq_mode[q], -1)
             packet_no[q]= np.append(packet_no[q], int((y[quabo]['pkt_num'])))
             lot = int(y[quabo]['tv_sec'])+int(y[quabo]['tv_usec'])/1000000
             localtime[q] = np.append(localtime[q], lot)
